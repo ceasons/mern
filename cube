@@ -1,18 +1,26 @@
+import ReactDOM from 'react-dom';
+
 import React, { useState } from 'react'
 
+let arr=[]
 export default function Array() {
-    const [numbers, setNumbers] = useState([])
+    const [num, setnum] = useState(0)
 
-    const handleClick = () => {
-        setNumbers(numbers => [...numbers, numbers.length])
+    const incnum = () => {
+        setnum(num + 1)
     }
 
+    const clickhandler = () => {
+        incnum()
+        arr.push(num)
+    }
     return (
         <div>
-            <button onClick={handleClick}>Increment</button>
-            {numbers.map(num => (
-                <p key={num}>Cube of {num} is {Math.pow(num, 3)}</p>
-            ))}
+            <button onClick={clickhandler}>inc</button>
+            {arr.map(arr => {
+                return (<p>Cube of {arr} is {arr*arr*arr}</p>)
+            })}
+
         </div>
     )
 }
