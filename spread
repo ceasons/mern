@@ -1,0 +1,64 @@
+import React, { useState } from 'react'
+
+const FormDataDisplay = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        languages: [],
+        gender: '',
+    });
+
+    const [displayData, setDisplayData] = useState({});
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+
+        setFormData((prevData) => {
+            if (type === 'checkbox') {
+                if (checked) {
+                    return {
+                        ...prevData,
+                        languages: [...prevData.languages, value],
+                    };
+                } else {
+                    return {
+                        ...prevData,
+                        languages: prevData.languages.filter((lang) => lang !== value),
+                    };
+                }
+            } else {
+                return {
+                    ...prevData,
+                    [name]: value,
+                };
+            }
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setDisplayData(formData);
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input name="name" onChange={handleChange} placeholder="Name" />
+            <input name="email" onChange={handleChange} placeholder="Email" />
+
+            <p>Languages:</p>
+            <input type="checkbox" name="languages" value="English" onChange={handleChange} /> English
+            <input type="checkbox" name="languages" value="Spanish" onChange={handleChange} /> Spanish
+            <input type="checkbox" name="languages" value="French" onChange={handleChange} /> French
+
+            <p>Gender:</p>
+            <input type="radio" name="gender" value="Male" onChange={handleChange} /> Male
+            <input type="radio" name="gender" value="Female" onChange={handleChange} /> Female
+
+            <button type="submit">Submit</button>
+
+            <pre>{JSON.stringify(displayData, null, 2)}</pre>
+        </form>
+    )
+}
+
+export default FormDataDisplay
