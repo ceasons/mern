@@ -1,0 +1,22 @@
+import React, { useState } from 'react'
+
+const Calc = () => {
+    const [num, setNum] = useState(0)
+    const [num2, setNum2] = useState(0)
+    const [op, setOp] = useState("+")
+
+    return (
+        <>
+            <button onClick={() => setNum(num + 1)}>{num}</button>
+            <select onChange={(e) => setOp(e.target.value)}>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+                <option value="*">*</option>
+            </select>
+            <button onClick={() => setNum2(num2 + 1)}>{num2}</button>={eval(num + op + num2)}
+        </>
+    )
+}
+
+export default Calc 
