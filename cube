@@ -1,0 +1,18 @@
+import React, { useState } from 'react'
+
+export default function Array() {
+    const [numbers, setNumbers] = useState([])
+
+    const handleClick = () => {
+        setNumbers(numbers => [...numbers, numbers.length])
+    }
+
+    return (
+        <div>
+            <button onClick={handleClick}>Increment</button>
+            {numbers.map(num => (
+                <p key={num}>Cube of {num} is {Math.pow(num, 3)}</p>
+            ))}
+        </div>
+    )
+}
