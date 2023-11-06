@@ -1,0 +1,29 @@
+import React, { Component } from "react";
+
+class Info extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+            like: 'like'
+        };
+    }
+
+    updateFunc = () => {
+        this.setState((prevState) => ({
+            count: prevState.count + 1,
+            like: prevState.count + 1 >= 2 ? 'likes' : 'like'
+        }));
+    }
+
+    render() {
+        return (
+            <>
+                <button onClick={this.updateFunc}>{this.state.like}</button>
+                <h3>{this.state.count}</h3>
+            </>
+        );
+    }
+}
+
+export default Info;
